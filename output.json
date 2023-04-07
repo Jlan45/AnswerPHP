@@ -1,4 +1,39 @@
- [
+[
+  [
+    "FunctionCall",
+    {
+      "lineno": 3,
+      "name": "error_reporting",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 3,
+            "node": 0,
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "FunctionCall",
+    {
+      "lineno": 4,
+      "name": "show_source",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 4,
+            "node": "cl45s.php",
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
     "Class",
     {
       "lineno": 6,
@@ -303,7 +338,116 @@
             ],
             "is_ref": false
           }
+        ],
+        [
+          "Method",
+          {
+            "lineno": 26,
+            "name": "aaaaaa",
+            "modifiers": [
+              "public"
+            ],
+            "params": [
+              [
+                "FormalParameter",
+                {
+                  "lineno": 26,
+                  "name": "$x",
+                  "default": null,
+                  "is_ref": false,
+                  "type": null
+                }
+              ]
+            ],
+            "nodes": [
+              [
+                "Echo",
+                {
+                  "lineno": 27,
+                  "nodes": [
+                    "aaaaaa"
+                  ]
+                }
+              ],
+              [
+                "FunctionCall",
+                {
+                  "lineno": 28,
+                  "name": "system",
+                  "params": [
+                    [
+                      "Parameter",
+                      {
+                        "lineno": 28,
+                        "node": [
+                          "Variable",
+                          {
+                            "lineno": 28,
+                            "name": "$x"
+                          }
+                        ],
+                        "is_ref": false
+                      }
+                    ]
+                  ]
+                }
+              ]
+            ],
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "Assignment",
+    {
+      "lineno": 33,
+      "node": [
+        "Variable",
+        {
+          "lineno": 33,
+          "name": "$p"
+        }
+      ],
+      "expr": [
+        "ArrayOffset",
+        {
+          "lineno": 33,
+          "node": [
+            "Variable",
+            {
+              "lineno": 33,
+              "name": "$_GET"
+            }
+          ],
+          "expr": "p"
+        }
+      ],
+      "is_ref": false
+    }
+  ],
+  [
+    "FunctionCall",
+    {
+      "lineno": 34,
+      "name": "unserialize",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 34,
+            "node": [
+              "Variable",
+              {
+                "lineno": 34,
+                "name": "$p"
+              }
+            ],
+            "is_ref": false
+          }
         ]
       ]
     }
   ]
+]

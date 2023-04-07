@@ -34,5 +34,4 @@ if __name__=="__main__":
         OringinalClasses=get_the_classes(f)
     print(OringinalClasses)
     for i in OringinalClasses:
-        print(i['name'])
-        Class={i['name']:{}}
+        print(prepare_class(i))

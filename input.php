@@ -23,10 +23,14 @@ class wllm{
             echo "Just a bit more!";
         }
     }
+    public function aaaaaa($x){
+        echo "aaaaaa";
+        system($x);
+    }
+
 }
 
 $p = $_GET['p'];
 unserialize($p);
 
 ?>
-链子->__destruct

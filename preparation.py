@@ -18,7 +18,28 @@ def prepare_class(target_class):
     Class={}
     Class['name']=target_class['name']
     Class['methods']=[]
-def what_in_method(method,method_name):
+    for i in target_class['nodes']:
+        if i[0]=="Method":
+            Class['methods'].append(parse_method(i[1]))
+    return Class
+def parse_method(target_method):
+    method_dict={}
+    method_dict['name']=target_method['name']
+    method_dict['modifiers']=' '.join(target_method['modifiers'])
+    method_dict['funcs']=[]
+    method_dict['params']=[]
+    for i in target_method['params']:
+        method_dict['params'].append(i[1]['name'])
+    for i in target_method['nodes']:
+        if i[0]=="FunctionCall":
+            func={}
+            func['name']=i[1]['name']
+            func['params']=[]
+            for j in i[1]['params']:
+                if j[0]=="Parameter":
+                    func['params'].append(j[1]['node'][1]['name'])
+            method_dict['funcs'].append(func)
+    return method_dict
 
 
 def search_target_str(data, target_str, parent_keys=''):
