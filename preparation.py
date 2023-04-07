@@ -5,6 +5,22 @@
 #             if j['name'].lower() in evil_functions or j[0].lower() in evil_functions:
 #                 print(j)
 #         except:
+import json
+
+
+def get_the_classes(outf):
+    Classes=[]
+    for i in json.load(outf):
+        if i[0] == "Class":
+            Classes.append(i[1])
+    return Classes
+def prepare_class(target_class):
+    Class={}
+    Class['name']=target_class['name']
+    Class['methods']=[]
+def what_in_method(method,method_name):
+
+
 def search_target_str(data, target_str, parent_keys=''):
     """
     递归搜索多层级对象中是否包含指定字符串，并输出包含该字符串的元素的层级键

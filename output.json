@@ -1,39 +1,4 @@
-[
-  [
-    "FunctionCall",
-    {
-      "lineno": 3,
-      "name": "error_reporting",
-      "params": [
-        [
-          "Parameter",
-          {
-            "lineno": 3,
-            "node": 0,
-            "is_ref": false
-          }
-        ]
-      ]
-    }
-  ],
-  [
-    "FunctionCall",
-    {
-      "lineno": 4,
-      "name": "show_source",
-      "params": [
-        [
-          "Parameter",
-          {
-            "lineno": 4,
-            "node": "cl45s.php",
-            "is_ref": false
-          }
-        ]
-      ]
-    }
-  ],
-  [
+ [
     "Class",
     {
       "lineno": 6,
@@ -142,7 +107,7 @@
         [
           "Method",
           {
-            "lineno": 16,
+            "lineno": 15,
             "name": "__destruct",
             "modifiers": [
               "public"
@@ -152,25 +117,25 @@
               [
                 "If",
                 {
-                  "lineno": 17,
+                  "lineno": 16,
                   "expr": [
                     "BinaryOp",
                     {
-                      "lineno": 17,
+                      "lineno": 16,
                       "op": "&&",
                       "left": [
                         "BinaryOp",
                         {
-                          "lineno": 17,
+                          "lineno": 16,
                           "op": "===",
                           "left": [
                             "ObjectProperty",
                             {
-                              "lineno": 17,
+                              "lineno": 16,
                               "node": [
                                 "Variable",
                                 {
-                                  "lineno": 17,
+                                  "lineno": 16,
                                   "name": "$this"
                                 }
                               ],
@@ -183,16 +148,16 @@
                       "right": [
                         "BinaryOp",
                         {
-                          "lineno": 17,
+                          "lineno": 16,
                           "op": "===",
                           "left": [
                             "ObjectProperty",
                             {
-                              "lineno": 17,
+                              "lineno": 16,
                               "node": [
                                 "Variable",
                                 {
-                                  "lineno": 17,
+                                  "lineno": 16,
                                   "name": "$this"
                                 }
                               ],
@@ -207,12 +172,12 @@
                   "node": [
                     "Block",
                     {
-                      "lineno": 17,
+                      "lineno": 16,
                       "nodes": [
                         [
                           "Include",
                           {
-                            "lineno": 18,
+                            "lineno": 17,
                             "expr": "flag.php",
                             "once": false
                           }
@@ -220,12 +185,12 @@
                         [
                           "Echo",
                           {
-                            "lineno": 19,
+                            "lineno": 18,
                             "nodes": [
                               [
                                 "Variable",
                                 {
-                                  "lineno": 19,
+                                  "lineno": 18,
                                   "name": "$flag"
                                 }
                               ]
@@ -235,21 +200,21 @@
                         [
                           "FunctionCall",
                           {
-                            "lineno": 20,
+                            "lineno": 19,
                             "name": "system",
                             "params": [
                               [
                                 "Parameter",
                                 {
-                                  "lineno": 20,
+                                  "lineno": 19,
                                   "node": [
                                     "ArrayOffset",
                                     {
-                                      "lineno": 20,
+                                      "lineno": 19,
                                       "node": [
                                         "Variable",
                                         {
-                                          "lineno": 20,
+                                          "lineno": 19,
                                           "name": "$_GET"
                                         }
                                       ],
@@ -269,12 +234,34 @@
                   "else_": [
                     "Else",
                     {
-                      "lineno": 21,
+                      "lineno": 20,
                       "node": [
                         "Block",
                         {
-                          "lineno": 21,
+                          "lineno": 20,
                           "nodes": [
+                            [
+                              "Echo",
+                              {
+                                "lineno": 21,
+                                "nodes": [
+                                  [
+                                    "ObjectProperty",
+                                    {
+                                      "lineno": 21,
+                                      "node": [
+                                        "Variable",
+                                        {
+                                          "lineno": 21,
+                                          "name": "$this"
+                                        }
+                                      ],
+                                      "name": "admin"
+                                    }
+                                  ]
+                                ]
+                              }
+                            ],
                             [
                               "Echo",
                               {
@@ -291,28 +278,6 @@
                                           "name": "$this"
                                         }
                                       ],
-                                      "name": "admin"
-                                    }
-                                  ]
-                                ]
-                              }
-                            ],
-                            [
-                              "Echo",
-                              {
-                                "lineno": 23,
-                                "nodes": [
-                                  [
-                                    "ObjectProperty",
-                                    {
-                                      "lineno": 23,
-                                      "node": [
-                                        "Variable",
-                                        {
-                                          "lineno": 23,
-                                          "name": "$this"
-                                        }
-                                      ],
                                       "name": "passwd"
                                     }
                                   ]
@@ -322,7 +287,7 @@
                             [
                               "Echo",
                               {
-                                "lineno": 24,
+                                "lineno": 23,
                                 "nodes": [
                                   "Just a bit more!"
                                 ]
@@ -341,56 +306,4 @@
         ]
       ]
     }
-  ],
-  [
-    "Assignment",
-    {
-      "lineno": 29,
-      "node": [
-        "Variable",
-        {
-          "lineno": 29,
-          "name": "$p"
-        }
-      ],
-      "expr": [
-        "ArrayOffset",
-        {
-          "lineno": 29,
-          "node": [
-            "Variable",
-            {
-              "lineno": 29,
-              "name": "$_GET"
-            }
-          ],
-          "expr": "p"
-        }
-      ],
-      "is_ref": false
-    }
-  ],
-  [
-    "FunctionCall",
-    {
-      "lineno": 30,
-      "name": "unserialize",
-      "params": [
-        [
-          "Parameter",
-          {
-            "lineno": 30,
-            "node": [
-              "Variable",
-              {
-                "lineno": 30,
-                "name": "$p"
-              }
-            ],
-            "is_ref": false
-          }
-        ]
-      ]
-    }
   ]
-]

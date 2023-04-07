@@ -4,12 +4,9 @@
 # Usage: php2json.py < input.php > output.json
 
 import sys
-sys.path.append('..')
-
 from phply.phplex import lexer
 from phply.phpparse import make_parser
-
-import simplejson
+import json
 
 input = sys.stdin
 output = sys.stdout
@@ -23,10 +20,10 @@ def export(items):
                item = item.generic(with_lineno=with_lineno)
            result.append(item)
     return result
-
-parser = make_parser()
-simplejson.dump(export(parser.parse(input.read(),
-                                    lexer=lexer,
-                                    tracking=with_lineno)),
-                output, indent=2)
-output.write('\n')
+def php2json(input_file, output_file):
+    parser = make_parser()
+    json.dump(export(parser.parse(input_file,
+                                        lexer=lexer,
+                                        tracking=with_lineno)),
+                    output_file, indent=2)
+    output_file.write('\n')
