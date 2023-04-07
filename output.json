@@ -1,0 +1,396 @@
+[
+  [
+    "FunctionCall",
+    {
+      "lineno": 3,
+      "name": "error_reporting",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 3,
+            "node": 0,
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "FunctionCall",
+    {
+      "lineno": 4,
+      "name": "show_source",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 4,
+            "node": "cl45s.php",
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "Class",
+    {
+      "lineno": 6,
+      "name": "wllm",
+      "type": null,
+      "extends": null,
+      "implements": [],
+      "traits": [],
+      "nodes": [
+        [
+          "ClassVariables",
+          {
+            "lineno": 8,
+            "modifiers": [
+              "public"
+            ],
+            "nodes": [
+              [
+                "ClassVariable",
+                {
+                  "lineno": 8,
+                  "name": "$admin",
+                  "initial": null
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "ClassVariables",
+          {
+            "lineno": 9,
+            "modifiers": [
+              "public"
+            ],
+            "nodes": [
+              [
+                "ClassVariable",
+                {
+                  "lineno": 9,
+                  "name": "$passwd",
+                  "initial": null
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "Method",
+          {
+            "lineno": 11,
+            "name": "__construct",
+            "modifiers": [
+              "public"
+            ],
+            "params": [],
+            "nodes": [
+              [
+                "Assignment",
+                {
+                  "lineno": 12,
+                  "node": [
+                    "ObjectProperty",
+                    {
+                      "lineno": 12,
+                      "node": [
+                        "Variable",
+                        {
+                          "lineno": 12,
+                          "name": "$this"
+                        }
+                      ],
+                      "name": "admin"
+                    }
+                  ],
+                  "expr": "user",
+                  "is_ref": false
+                }
+              ],
+              [
+                "Assignment",
+                {
+                  "lineno": 13,
+                  "node": [
+                    "ObjectProperty",
+                    {
+                      "lineno": 13,
+                      "node": [
+                        "Variable",
+                        {
+                          "lineno": 13,
+                          "name": "$this"
+                        }
+                      ],
+                      "name": "passwd"
+                    }
+                  ],
+                  "expr": "123456",
+                  "is_ref": false
+                }
+              ]
+            ],
+            "is_ref": false
+          }
+        ],
+        [
+          "Method",
+          {
+            "lineno": 16,
+            "name": "__destruct",
+            "modifiers": [
+              "public"
+            ],
+            "params": [],
+            "nodes": [
+              [
+                "If",
+                {
+                  "lineno": 17,
+                  "expr": [
+                    "BinaryOp",
+                    {
+                      "lineno": 17,
+                      "op": "&&",
+                      "left": [
+                        "BinaryOp",
+                        {
+                          "lineno": 17,
+                          "op": "===",
+                          "left": [
+                            "ObjectProperty",
+                            {
+                              "lineno": 17,
+                              "node": [
+                                "Variable",
+                                {
+                                  "lineno": 17,
+                                  "name": "$this"
+                                }
+                              ],
+                              "name": "admin"
+                            }
+                          ],
+                          "right": "admin"
+                        }
+                      ],
+                      "right": [
+                        "BinaryOp",
+                        {
+                          "lineno": 17,
+                          "op": "===",
+                          "left": [
+                            "ObjectProperty",
+                            {
+                              "lineno": 17,
+                              "node": [
+                                "Variable",
+                                {
+                                  "lineno": 17,
+                                  "name": "$this"
+                                }
+                              ],
+                              "name": "passwd"
+                            }
+                          ],
+                          "right": "ctf"
+                        }
+                      ]
+                    }
+                  ],
+                  "node": [
+                    "Block",
+                    {
+                      "lineno": 17,
+                      "nodes": [
+                        [
+                          "Include",
+                          {
+                            "lineno": 18,
+                            "expr": "flag.php",
+                            "once": false
+                          }
+                        ],
+                        [
+                          "Echo",
+                          {
+                            "lineno": 19,
+                            "nodes": [
+                              [
+                                "Variable",
+                                {
+                                  "lineno": 19,
+                                  "name": "$flag"
+                                }
+                              ]
+                            ]
+                          }
+                        ],
+                        [
+                          "FunctionCall",
+                          {
+                            "lineno": 20,
+                            "name": "system",
+                            "params": [
+                              [
+                                "Parameter",
+                                {
+                                  "lineno": 20,
+                                  "node": [
+                                    "ArrayOffset",
+                                    {
+                                      "lineno": 20,
+                                      "node": [
+                                        "Variable",
+                                        {
+                                          "lineno": 20,
+                                          "name": "$_GET"
+                                        }
+                                      ],
+                                      "expr": 0
+                                    }
+                                  ],
+                                  "is_ref": false
+                                }
+                              ]
+                            ]
+                          }
+                        ]
+                      ]
+                    }
+                  ],
+                  "elseifs": [],
+                  "else_": [
+                    "Else",
+                    {
+                      "lineno": 21,
+                      "node": [
+                        "Block",
+                        {
+                          "lineno": 21,
+                          "nodes": [
+                            [
+                              "Echo",
+                              {
+                                "lineno": 22,
+                                "nodes": [
+                                  [
+                                    "ObjectProperty",
+                                    {
+                                      "lineno": 22,
+                                      "node": [
+                                        "Variable",
+                                        {
+                                          "lineno": 22,
+                                          "name": "$this"
+                                        }
+                                      ],
+                                      "name": "admin"
+                                    }
+                                  ]
+                                ]
+                              }
+                            ],
+                            [
+                              "Echo",
+                              {
+                                "lineno": 23,
+                                "nodes": [
+                                  [
+                                    "ObjectProperty",
+                                    {
+                                      "lineno": 23,
+                                      "node": [
+                                        "Variable",
+                                        {
+                                          "lineno": 23,
+                                          "name": "$this"
+                                        }
+                                      ],
+                                      "name": "passwd"
+                                    }
+                                  ]
+                                ]
+                              }
+                            ],
+                            [
+                              "Echo",
+                              {
+                                "lineno": 24,
+                                "nodes": [
+                                  "Just a bit more!"
+                                ]
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ],
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "Assignment",
+    {
+      "lineno": 29,
+      "node": [
+        "Variable",
+        {
+          "lineno": 29,
+          "name": "$p"
+        }
+      ],
+      "expr": [
+        "ArrayOffset",
+        {
+          "lineno": 29,
+          "node": [
+            "Variable",
+            {
+              "lineno": 29,
+              "name": "$_GET"
+            }
+          ],
+          "expr": "p"
+        }
+      ],
+      "is_ref": false
+    }
+  ],
+  [
+    "FunctionCall",
+    {
+      "lineno": 30,
+      "name": "unserialize",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 30,
+            "node": [
+              "Variable",
+              {
+                "lineno": 30,
+                "name": "$p"
+              }
+            ],
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ]
+]
