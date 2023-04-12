@@ -8,9 +8,11 @@ class wllm{
     public $admin;
     public $passwd;
 
-    public function __construct(){
+    public function __construct($nnnn){
         $this->admin ="user";
         $this->passwd = "123456";
+        $this->xxxxxx->aaaa = $nnnn->aaaa();
+
     }
      public function __destruct(){
         if($this->admin === "admin" && $this->passwd === "ctf"){

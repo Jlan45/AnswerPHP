@@ -20,6 +20,7 @@ import php2json
 
 
 if __name__=="__main__":
+    Classes=[]
     input_file="input.php"
     try:
         with open(input_file,"r")as inf:
@@ -29,9 +30,10 @@ if __name__=="__main__":
     except FileNotFoundError:
         print("请检查输入文件是否存在")
         exit()
-    with open("output.json","r")as f:
-        # print(f.read())
-        OringinalClasses=get_the_classes(f)
-    print(OringinalClasses)
-    for i in OringinalClasses:
-        print(prepare_class(i))
+    # with open("output.json","r")as f:
+    #     # print(f.read())
+    #     OringinalClasses=get_the_classes(f)
+    # for i in OringinalClasses:
+    #     Classes.append(prepare_class(i))
+    #     with open("output.json","w")as f:
+    #         json.dump(Classes,f)

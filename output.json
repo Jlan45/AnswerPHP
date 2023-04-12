@@ -89,7 +89,18 @@
             "modifiers": [
               "public"
             ],
-            "params": [],
+            "params": [
+              [
+                "FormalParameter",
+                {
+                  "lineno": 11,
+                  "name": "$nnnn",
+                  "default": null,
+                  "is_ref": false,
+                  "type": null
+                }
+              ]
+            ],
             "nodes": [
               [
                 "Assignment",
@@ -134,6 +145,49 @@
                   "expr": "123456",
                   "is_ref": false
                 }
+              ],
+              [
+                "Assignment",
+                {
+                  "lineno": 14,
+                  "node": [
+                    "ObjectProperty",
+                    {
+                      "lineno": 14,
+                      "node": [
+                        "ObjectProperty",
+                        {
+                          "lineno": 14,
+                          "node": [
+                            "Variable",
+                            {
+                              "lineno": 14,
+                              "name": "$this"
+                            }
+                          ],
+                          "name": "xxxxxx"
+                        }
+                      ],
+                      "name": "aaaa"
+                    }
+                  ],
+                  "expr": [
+                    "MethodCall",
+                    {
+                      "lineno": 14,
+                      "node": [
+                        "Variable",
+                        {
+                          "lineno": 14,
+                          "name": "$nnnn"
+                        }
+                      ],
+                      "name": "aaaa",
+                      "params": []
+                    }
+                  ],
+                  "is_ref": false
+                }
               ]
             ],
             "is_ref": false
@@ -142,7 +196,7 @@
         [
           "Method",
           {
-            "lineno": 15,
+            "lineno": 17,
             "name": "__destruct",
             "modifiers": [
               "public"
@@ -152,25 +206,25 @@
               [
                 "If",
                 {
-                  "lineno": 16,
+                  "lineno": 18,
                   "expr": [
                     "BinaryOp",
                     {
-                      "lineno": 16,
+                      "lineno": 18,
                       "op": "&&",
                       "left": [
                         "BinaryOp",
                         {
-                          "lineno": 16,
+                          "lineno": 18,
                           "op": "===",
                           "left": [
                             "ObjectProperty",
                             {
-                              "lineno": 16,
+                              "lineno": 18,
                               "node": [
                                 "Variable",
                                 {
-                                  "lineno": 16,
+                                  "lineno": 18,
                                   "name": "$this"
                                 }
                               ],
@@ -183,16 +237,16 @@
                       "right": [
                         "BinaryOp",
                         {
-                          "lineno": 16,
+                          "lineno": 18,
                           "op": "===",
                           "left": [
                             "ObjectProperty",
                             {
-                              "lineno": 16,
+                              "lineno": 18,
                               "node": [
                                 "Variable",
                                 {
-                                  "lineno": 16,
+                                  "lineno": 18,
                                   "name": "$this"
                                 }
                               ],
@@ -207,12 +261,12 @@
                   "node": [
                     "Block",
                     {
-                      "lineno": 16,
+                      "lineno": 18,
                       "nodes": [
                         [
                           "Include",
                           {
-                            "lineno": 17,
+                            "lineno": 19,
                             "expr": "flag.php",
                             "once": false
                           }
@@ -220,12 +274,12 @@
                         [
                           "Echo",
                           {
-                            "lineno": 18,
+                            "lineno": 20,
                             "nodes": [
                               [
                                 "Variable",
                                 {
-                                  "lineno": 18,
+                                  "lineno": 20,
                                   "name": "$flag"
                                 }
                               ]
@@ -235,21 +289,21 @@
                         [
                           "FunctionCall",
                           {
-                            "lineno": 19,
+                            "lineno": 21,
                             "name": "system",
                             "params": [
                               [
                                 "Parameter",
                                 {
-                                  "lineno": 19,
+                                  "lineno": 21,
                                   "node": [
                                     "ArrayOffset",
                                     {
-                                      "lineno": 19,
+                                      "lineno": 21,
                                       "node": [
                                         "Variable",
                                         {
-                                          "lineno": 19,
+                                          "lineno": 21,
                                           "name": "$_GET"
                                         }
                                       ],
@@ -269,25 +323,25 @@
                   "else_": [
                     "Else",
                     {
-                      "lineno": 20,
+                      "lineno": 22,
                       "node": [
                         "Block",
                         {
-                          "lineno": 20,
+                          "lineno": 22,
                           "nodes": [
                             [
                               "Echo",
                               {
-                                "lineno": 21,
+                                "lineno": 23,
                                 "nodes": [
                                   [
                                     "ObjectProperty",
                                     {
-                                      "lineno": 21,
+                                      "lineno": 23,
                                       "node": [
                                         "Variable",
                                         {
-                                          "lineno": 21,
+                                          "lineno": 23,
                                           "name": "$this"
                                         }
                                       ],
@@ -300,16 +354,16 @@
                             [
                               "Echo",
                               {
-                                "lineno": 22,
+                                "lineno": 24,
                                 "nodes": [
                                   [
                                     "ObjectProperty",
                                     {
-                                      "lineno": 22,
+                                      "lineno": 24,
                                       "node": [
                                         "Variable",
                                         {
-                                          "lineno": 22,
+                                          "lineno": 24,
                                           "name": "$this"
                                         }
                                       ],
@@ -322,7 +376,7 @@
                             [
                               "Echo",
                               {
-                                "lineno": 23,
+                                "lineno": 25,
                                 "nodes": [
                                   "Just a bit more!"
                                 ]
@@ -342,7 +396,7 @@
         [
           "Method",
           {
-            "lineno": 26,
+            "lineno": 28,
             "name": "aaaaaa",
             "modifiers": [
               "public"
@@ -351,7 +405,7 @@
               [
                 "FormalParameter",
                 {
-                  "lineno": 26,
+                  "lineno": 28,
                   "name": "$x",
                   "default": null,
                   "is_ref": false,
@@ -363,7 +417,7 @@
               [
                 "Echo",
                 {
-                  "lineno": 27,
+                  "lineno": 29,
                   "nodes": [
                     "aaaaaa"
                   ]
@@ -372,17 +426,17 @@
               [
                 "FunctionCall",
                 {
-                  "lineno": 28,
+                  "lineno": 30,
                   "name": "system",
                   "params": [
                     [
                       "Parameter",
                       {
-                        "lineno": 28,
+                        "lineno": 30,
                         "node": [
                           "Variable",
                           {
-                            "lineno": 28,
+                            "lineno": 30,
                             "name": "$x"
                           }
                         ],
@@ -402,22 +456,22 @@
   [
     "Assignment",
     {
-      "lineno": 33,
+      "lineno": 35,
       "node": [
         "Variable",
         {
-          "lineno": 33,
+          "lineno": 35,
           "name": "$p"
         }
       ],
       "expr": [
         "ArrayOffset",
         {
-          "lineno": 33,
+          "lineno": 35,
           "node": [
             "Variable",
             {
-              "lineno": 33,
+              "lineno": 35,
               "name": "$_GET"
             }
           ],
@@ -430,17 +484,17 @@
   [
     "FunctionCall",
     {
-      "lineno": 34,
+      "lineno": 36,
       "name": "unserialize",
       "params": [
         [
           "Parameter",
           {
-            "lineno": 34,
+            "lineno": 36,
             "node": [
               "Variable",
               {
-                "lineno": 34,
+                "lineno": 36,
                 "name": "$p"
               }
             ],
