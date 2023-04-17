@@ -2,6 +2,8 @@ import json
 import config
 from preparation import *
 import php2json
+from findthechain import *
+from config import *
 # with open("output.json","r")as f:
 #     a=json.load(f)
 # OringinalClasses=[]
@@ -30,10 +32,15 @@ if __name__=="__main__":
     except FileNotFoundError:
         print("请检查输入文件是否存在")
         exit()
-    # with open("output.json","r")as f:
-    #     # print(f.read())
-    #     OringinalClasses=get_the_classes(f)
-    # for i in OringinalClasses:
-    #     Classes.append(prepare_class(i))
-    #     with open("output.json","w")as f:
-    #         json.dump(Classes,f)
+    with open("output.json","r")as f:
+        # print(f.read())
+        OringinalClasses=get_the_classes(f)
+    for i in OringinalClasses:
+        Classes.append(prepare_class(i))
+    for i in Classes:
+        i['evils']=find_evil(i, EVIL_FUNCTION_PHP)
+    with open("output.json", "w") as f:
+        json.dump(Classes, f)
+
+    chains=chains_start(Classes)
+    print(chains)

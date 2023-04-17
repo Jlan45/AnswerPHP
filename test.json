@@ -1,4 +1,55 @@
-{
-  "target": ["$this","xxxxxx","aaaa"],
-  "value": ["$nnnn"]
-}
+[
+  [
+    'Include',
+    {
+      'lineno': 19,
+      'expr': 'flag.php',
+      'once': False
+    }
+  ],
+  [
+    'Echo',
+    {
+      'lineno': 20,
+      'nodes': [
+        [
+          'Variable',
+          {
+            'lineno': 20,
+            'name': '$flag'
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    'FunctionCall',
+    {
+      'lineno': 21,
+      'name': 'system',
+      'params': [
+        [
+          'Parameter',
+          {
+            'lineno': 21,
+            'node': [
+              'ArrayOffset',
+              {
+                'lineno': 21,
+                'node': [
+                  'Variable',
+                  {
+                    'lineno': 21,
+                    'name': '$_GET'
+                  }
+                ],
+                'expr': 0
+              }
+            ],
+            'is_ref': False
+          }
+        ]
+      ]
+    }
+  ]
+]
