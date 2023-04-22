@@ -43,4 +43,4 @@ if __name__=="__main__":
         json.dump(Classes, f)
 
     chains=chains_start(Classes)
-    print(chains)
+    chains_find(Classes,chains)

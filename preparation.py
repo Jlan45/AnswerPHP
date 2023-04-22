@@ -52,66 +52,71 @@ def parse_method(target_method):
     method_dict={}
     method_dict['name']=target_method['name']
     method_dict['modifiers']=' '.join(target_method['modifiers'])
-    method_dict['funcs']=parse_method_nodes(target_method['nodes'])
+    method_dict['funcs'],method_dict['methods']=parse_method_nodes(target_method['nodes'])
     method_dict['params']=[]
     for i in target_method['params']:
         method_dict['params'].append(i[1]['name'])
     return method_dict
 def parse_method_nodes(nodes):
-    funcs=[]
-
+    dosth=[[],[]] #0位存funcs，1位存methods
     for i in nodes:
-        if i[0]=="FunctionCall":
+        tmp_node=find_method_call(i)
+        if tmp_node:
+            #写method存储的处理
+            print(tmp_node)
+        tmp_node=find_func_call(i)
+        if tmp_node:
+            #写func存储的处理
             func={}
-            func['name']=i[1]['name']
+            func['name']=tmp_node['name']
             func['params']=[]
-            for j in i[1]['params']:
+            for j in tmp_node['params']:
                 if j[0]=="Parameter":
                     if j[1]['node'][0]=="Variable":
                         func['params'].append(j[1]['node'][1]['name'])
                     elif j[1]['node'][0]=="ArrayOffset":
                         func['params'].append(parse_arrayoffset(j[1]['node']))
-            funcs.append(func)
-        elif i[0]=="Assignment":
-            current_node= i[1]
-            target=[]
-            value=[]
-            while isinstance(current_node, dict):
-                if "name" in current_node:
-                    target.append(current_node["name"])
-                try:
-                    current_node = current_node["node"][1]
-                except:
-                    break
-            current_node=i[1]['expr']
-            if isinstance(current_node, str):
-                value=current_node
-            else:
-                if current_node[0]=="MethodCall":
-                    value=parse_MethodCall(current_node)
-                elif current_node[0]=="FunctionCall":
-                    #处理函数操作的赋值
-                    value=parse_FunctionCall(current_node)
-                else:
-                    #处理非函数操作的赋值
-                    current_node=current_node[1]
-                    while isinstance(current_node, dict):
-                        if "name" in current_node:
-                            value.append(current_node["name"])
-                        try:
-                            current_node = current_node["node"][1]
-                        except:
-                            break
-            func={"name":"assignment"}
-            func['target']=target[::-1]
-            func['value']=value[::-1]
-            funcs.append(func)
-        elif i[0]=="If":
-            for i in parse_method_nodes(i[1]['node'][1]['nodes']):
-                funcs.append(i)
-        else:
-            parse_others(i)
-    return funcs
+            dosth[0].append(func)
+        # elif i[0]=="Assignment":
+        #     current_node= i[1]
+        #     target=[]
+        #     value=[]
+        #     while isinstance(current_node, dict):
+        #         if "name" in current_node:
+        #             target.append(current_node["name"])
+        #         try:
+        #             current_node = current_node["node"][1]
+        #         except:
+        #             break
+        #     current_node=i[1]['expr']
+        #     if isinstance(current_node, str):
+        #         value=current_node
+        #     else:
+        #         if current_node[0]=="MethodCall":
+        #             value=parse_MethodCall(current_node)
+        #         elif current_node[0]=="FunctionCall":
+        #             #处理函数操作的赋值
+        #             value=parse_FunctionCall(current_node)
+        #         else:
+        #             #处理非函数操作的赋值
+        #             current_node=current_node[1]
+        #             while isinstance(current_node, dict):
+        #                 if "name" in current_node:
+        #                     value.append(current_node["name"])
+        #                 try:
+        #                     current_node = current_node["node"][1]
+        #                 except:
+        #                     break
+        #     func={"name":"assignment"}
+        #     func['target']=target[::-1]
+        #     func['value']=value[::-1]
+        #     funcs.append(func)
+        # elif i[0]=="If":
+        #     for i in parse_method_nodes(i[1]['node'][1]['nodes']):
+        #         funcs.append(i)
+        # else:
+        #     parse_others(i)
+    return dosth
 def parse_arrayoffset(target):
     arrayoffset=[]
     arrayoffset.append(target[1]['node'][1]['name'])
@@ -150,6 +155,45 @@ def find_evil(target_class,evil_functions):
                 evils.append(i['name'])
     return evils
 
+def find_method_call(node):
+    """
+    递归函数，用于获取"MethodCall"部分的属性
+    """
+    if isinstance(node, list): # 判断是否为列表类型
+        if not node:  # 判断列表是否为空
+            return None
+        if node[0]=="MethodCall":
+            return node[1]
+        for item in node:
+            result = find_method_call(item)
+            if result: # 如果在子节点中找到了"MethodCall"，则返回结果
+                return result
+    elif isinstance(node, dict): # 判断是否为字典类型
+        for value in node.values():
+            result = find_method_call(value)
+            if result: # 如果在子节点中找到了"MethodCall"，则返回结果
+                return result
+    return None # 如果没有找到"MethodCall"，返回None
+
+def find_func_call(node):
+    """
+    递归函数，用于获取"MethodCall"部分的属性
+    """
+    if isinstance(node, list): # 判断是否为列表类型
+        if not node:  # 判断列表是否为空
+            return None
+        if node[0]=="FunctionCall":
+            return node[1]
+        for item in node:
+            result = find_func_call(item)
+            if result: # 如果在子节点中找到了"MethodCall"，则返回结果
+                return result
+    elif isinstance(node, dict): # 判断是否为字典类型
+        for value in node.values():
+            result = find_func_call(value)
+            if result: # 如果在子节点中找到了"MethodCall"，则返回结果
+                return result
+    return None # 如果没有找到"MethodCall"，返回None
 
 def search_target_str(data, target_str, parent_keys=''):
     """
