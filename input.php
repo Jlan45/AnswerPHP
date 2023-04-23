@@ -26,6 +26,7 @@ class wllm{
         }
     }
     public function aaaaaa($x){
+        $this->aaa->aaa();
         echo "aaaaaa".$x->x()."aaaa";
         include "aaaa.php";
 

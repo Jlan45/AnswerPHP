@@ -1,1 +1,90 @@
-[{"name": "wllm", "methods": [{"name": "__construct", "modifiers": "public", "funcs": [], "methods": [], "params": ["$nnnn"]}, {"name": "__destruct", "modifiers": "public", "funcs": [{"name": "system", "params": [["$_GET", 0]]}], "methods": [], "params": []}, {"name": "aaaaaa", "modifiers": "public", "funcs": [{"name": "system", "params": ["$x"]}], "methods": [], "params": ["$x"]}], "variables": [{"name": "$admin", "modifiers": ["public"], "initial": null}, {"name": "$passwd", "modifiers": ["public"], "initial": null}], "evils": ["__destruct", "aaaaaa"]}]
+[
+  {
+    "name": "wllm",
+    "methods": [
+      {
+        "name": "__construct",
+        "modifiers": "public",
+        "funcs": [],
+        "methods": [
+          {
+            "name": "aaaa",
+            "variable": [
+              "$nnnn"
+            ]
+          }
+        ],
+        "params": [
+          "$nnnn"
+        ]
+      },
+      {
+        "name": "__destruct",
+        "modifiers": "public",
+        "funcs": [
+          {
+            "name": "system",
+            "params": [
+              [
+                "$_GET",
+                0
+              ]
+            ]
+          }
+        ],
+        "methods": [],
+        "params": []
+      },
+      {
+        "name": "aaaaaa",
+        "modifiers": "public",
+        "funcs": [
+          {
+            "name": "system",
+            "params": [
+              "$x"
+            ]
+          }
+        ],
+        "methods": [
+          {
+            "name": "aaa",
+            "variable": [
+              "$this",
+              "aaa"
+            ]
+          },
+          {
+            "name": "x",
+            "variable": [
+              "$x"
+            ]
+          }
+        ],
+        "params": [
+          "$x"
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "name": "$admin",
+        "modifiers": [
+          "public"
+        ],
+        "initial": null
+      },
+      {
+        "name": "$passwd",
+        "modifiers": [
+          "public"
+        ],
+        "initial": null
+      }
+    ],
+    "evils": [
+      "__destruct",
+      "aaaaaa"
+    ]
+  }
+]
