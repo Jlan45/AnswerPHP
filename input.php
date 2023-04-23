@@ -19,6 +19,7 @@ class wllm{
             include("flag.php");
             echo $flag;
             system($_GET[0]);
+
         }else{
             echo $this->admin;
             echo $this->passwd;

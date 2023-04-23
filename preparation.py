@@ -2,119 +2,147 @@ import json
 
 
 def get_the_classes(outf):
-    #对文件中存在的每个Class进行提取
-    Classes=[]
+    # 对文件中存在的每个Class进行提取
+    Classes = []
     for i in json.load(outf):
         if i[0] == "Class":
             Classes.append(i[1])
     return Classes
+
+
 def prepare_class(target_class):
-    #解析传入的Class列表，将其中的Class解析成分析器需要的格式
-    Class={}
-    Class['name']=target_class['name']
-    Class['methods']=[]
-    Class['variables']=[]
+    # 解析传入的Class列表，将其中的Class解析成分析器需要的格式
+    Class = {}
+    Class['name'] = target_class['name']
+    Class['methods'] = []
+    Class['variables'] = []
     for i in target_class['nodes']:
-        if i[0]=="Method":
+        if i[0] == "Method":
             Class['methods'].append(parse_method(i[1]))
-        elif i[0]=="ClassVariables":
+        elif i[0] == "ClassVariables":
             Class['variables'].append(parse_variable(i[1]))
+    Class['calls']=find_method_call(Class)
     return Class
+
+
 def parse_variable(target_variable):
-    #处理类中所有属性
-    variable_dict={}
-    variable_dict['name']=target_variable['nodes'][0][1]['name']
-    variable_dict['modifiers']=(target_variable['modifiers'])
-    variable_dict['initial']=target_variable['nodes'][0][1]['initial']
+    # 处理类中所有属性
+    variable_dict = {}
+    variable_dict['name'] = target_variable['nodes'][0][1]['name']
+    variable_dict['modifiers'] = (target_variable['modifiers'])
+    variable_dict['initial'] = target_variable['nodes'][0][1]['initial']
     return variable_dict
-def parse_others(target):
-    #处理类中其他内容
+
+def find_method_call(target):
     return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def parse_others(target):
+    # 处理类中其他内容
+    return None
+
+
 def parse_method(target_method):
-    #处理类中方法，部分赋值相关内容还没有处理好
-    method_dict={}
-    method_dict['name']=target_method['name']
-    method_dict['modifiers']=' '.join(target_method['modifiers'])
-    method_dict['funcs'],method_dict['methods']=parse_method_nodes(target_method['nodes'])
-    method_dict['params']=[]
+    # 处理类中方法，部分赋值相关内容还没有处理好
+    method_dict = {}
+    method_dict['name'] = target_method['name']
+    method_dict['modifiers'] = ' '.join(target_method['modifiers'])
+    method_dict['funcs'], method_dict['methods'] = parse_method_nodes(target_method['nodes'])
+    method_dict['params'] = []
     for i in target_method['params']:
         method_dict['params'].append(i[1]['name'])
     return method_dict
+
+
 def parse_method_nodes(nodes):
-    dosth=[[],[]] #0位存funcs，1位存methods
+    dosth = [[], []]  # 0位存funcs，1位存methods
     for i in nodes:
-        tmp_node=find_target_attr(i,"MethodCall")
+        tmp_node = list(find_target_attr(i, "MethodCall"))
+        print(tmp_node)
         if tmp_node:
-            #写method存储的处理
-            print(tmp_node)
-            method={}
-            method['name']=tmp_node['name']
-            method['variable']=list(find_variable(tmp_node))
-            method['variable'].reverse()
-            method['variable'].pop()
-            print(method['variable'])
-            '''
-            对于属性判断等后面在做，目前所有工作为找链子服务
-            '''
-            # for j in tmp_node['params']:
-            #     if j[0]=="Parameter":
-            #         if j[1]['node'][0]=="Variable":
-            #             method['params'].append(j[1]['node'][1]['name'])
-            #         elif j[1]['node'][0]=="ArrayOffset":
-            #             method['params'].append(parse_arrayoffset(j[1]['node']))
-            dosth[1].append(method)
-        tmp_node=find_target_attr(i,"FunctionCall")
+            # 写method存储的处理
+            for j in tmp_node:
+                method = {}
+                method['name'] = j['name']
+                method['variable'] = list(find_variable(j))
+                method['variable'].reverse()
+                method['variable'].pop()
+                '''
+                对于属性判断等后面在做，目前所有工作为找链子服务
+                '''
+                # for j in tmp_node['params']:
+                #     if j[0]=="Parameter":
+                #         if j[1]['node'][0]=="Variable":
+                #             method['params'].append(j[1]['node'][1]['name'])
+                #         elif j[1]['node'][0]=="ArrayOffset":
+                #             method['params'].append(parse_arrayoffset(j[1]['node']))
+                dosth[1].append(method)
+        tmp_node = list(find_target_attr(i, "FunctionCall"))
         if tmp_node:
-            #写func存储的处理
-            func={}
-            func['name']=tmp_node['name']
-            func['params']=[]
-            for j in tmp_node['params']:
-                if j[0]=="Parameter":
-                    if j[1]['node'][0]=="Variable":
-                        func['params'].append(j[1]['node'][1]['name'])
-                    elif j[1]['node'][0]=="ArrayOffset":
-                        func['params'].append(parse_arrayoffset(j[1]['node']))
-            dosth[0].append(func)
-        tmp_node=parse_others(i)
+            for j in tmp_node:
+                # 写func存储的处理
+                func = {}
+                func['name'] = tmp_node['name']
+                func['params'] = []
+                for j in tmp_node['params']:
+                    if j[0] == "Parameter":
+                        if j[1]['node'][0] == "Variable":
+                            func['params'].append(j[1]['node'][1]['name'])
+                        elif j[1]['node'][0] == "ArrayOffset":
+                            func['params'].append(parse_arrayoffset(j[1]['node']))
+                dosth[0].append(func)
+        tmp_node = parse_others(i)
         if parse_others(i):
             dosth[0].append(parse_others(i))
 
-
     return dosth
+
+
 def parse_arrayoffset(target):
-    arrayoffset=[]
+    arrayoffset = []
     arrayoffset.append(target[1]['node'][1]['name'])
     arrayoffset.append(target[1]['expr'])
     return arrayoffset
-def find_evil(target_class,evil_functions):
-    #查找类中是否存在恶意函数
-    evils=[]
+
+
+def find_evil(target_class, evil_functions):
+    # 查找类中是否存在恶意函数
+    evils = []
     for i in target_class['methods']:
         for j in i['funcs']:
             if j['name'] in evil_functions:
                 evils.append(i['name'])
     return evils
 
-def find_target_attr(node,attrname):
+
+def find_target_attr(node, attrname):
     """
     递归查找相对应的属性
     """
-    if isinstance(node, list): # 判断是否为列表类型
-        if not node:  # 判断列表是否为空
-            return None
-        if node[0]==attrname:
-            return node[1]
-        for item in node:
-            result = find_target_attr(item,attrname)
-            if result: # 如果在子节点中找到了"MethodCall"，则返回结果
-                return result
-    elif isinstance(node, dict): # 判断是否为字典类型
+    if isinstance(node, list):  # 判断是否为列表类型
+        try:
+            if node[0] == attrname:
+                yield node[1]
+            for item in node:
+                yield from find_target_attr(item, attrname)
+        except:
+            pass
+    elif isinstance(node, dict):  # 判断是否为字典类型
         for value in node.values():
-            result = find_target_attr(value,attrname)
-            if result: # 如果在子节点中找到了"MethodCall"，则返回结果
-                return result
-    return None # 如果没有找到"MethodCall"，返回None
+            yield from find_target_attr(value, attrname)
+
 
 def find_variable(node):
     '''
@@ -132,9 +160,6 @@ def find_variable(node):
             yield from find_variable(item)
 
 
-
-
-
 def search_target_str(data, target_str, parent_keys=''):
     """
     递归搜索多层级对象中是否包含指定字符串，并输出包含该字符串的元素的层级键
@@ -145,11 +170,11 @@ def search_target_str(data, target_str, parent_keys=''):
     if isinstance(data, dict):
         for key, value in data.items():
             if isinstance(value, (dict, list)):
-                search_target_str(value, target_str,  parent_keys + f"[{key!r}]")
+                search_target_str(value, target_str, parent_keys + f"[{key!r}]")
             elif isinstance(value, str) and value.lower() in target_str:
-                print( parent_keys + f"[{key!r}]")
+                print(parent_keys + f"[{key!r}]")
             elif isinstance(key, str) and key.lower() in target_str:
-                print( parent_keys + f"[{key!r}]")
+                print(parent_keys + f"[{key!r}]")
     elif isinstance(data, list):
         for index, item in enumerate(data):
             if isinstance(item, (dict, list)):
