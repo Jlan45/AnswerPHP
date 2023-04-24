@@ -50,8 +50,22 @@ def find_method_call(target):
 
 
 def parse_others(target):
+    others_list=[]
+    a=list(find_target_attr(target,"Echo"))
+    if a:
+        return None
+    a=list(find_target_attr(target,"Include"))
+    if a:
+        return None
+    a=list(find_target_attr(target,"Eval"))
+    if a:
+        for i in a:
+            func={}
+            func['name']='eval'
+            func['params']=list(find_variable(i))
+            others_list.append(func)
     # 处理类中其他内容
-    return None
+    return others_list
 
 
 def parse_method(target_method):
@@ -70,7 +84,6 @@ def parse_method_nodes(nodes):
     dosth = [[], []]  # 0位存funcs，1位存methods
     for i in nodes:
         tmp_node = list(find_target_attr(i, "MethodCall"))
-        print(tmp_node)
         if tmp_node:
             # 写method存储的处理
             for j in tmp_node:
@@ -81,6 +94,7 @@ def parse_method_nodes(nodes):
                 method['variable'].pop()
                 '''
                 对于属性判断等后面在做，目前所有工作为找链子服务
+                下面的代码考虑并不完全，可以后面再改改
                 '''
                 # for j in tmp_node['params']:
                 #     if j[0]=="Parameter":
@@ -94,19 +108,18 @@ def parse_method_nodes(nodes):
             for j in tmp_node:
                 # 写func存储的处理
                 func = {}
-                func['name'] = tmp_node['name']
+                func['name'] = j['name']
                 func['params'] = []
-                for j in tmp_node['params']:
-                    if j[0] == "Parameter":
-                        if j[1]['node'][0] == "Variable":
-                            func['params'].append(j[1]['node'][1]['name'])
-                        elif j[1]['node'][0] == "ArrayOffset":
-                            func['params'].append(parse_arrayoffset(j[1]['node']))
+                # for j in tmp_node['params']:
+                #     if j[0] == "Parameter":
+                #         if j[1]['node'][0] == "Variable":
+                #             func['params'].append(j[1]['node'][1]['name'])
+                #         elif j[1]['node'][0] == "ArrayOffset":
+                #             func['params'].append(parse_arrayoffset(j[1]['node']))
                 dosth[0].append(func)
         tmp_node = parse_others(i)
-        if parse_others(i):
-            dosth[0].append(parse_others(i))
-
+        if tmp_node:
+            dosth[0]+=tmp_node
     return dosth
 
 

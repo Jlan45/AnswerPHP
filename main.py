@@ -29,6 +29,6 @@ def GAMESTART(input_file="input.php"):
     print(WORKING.finalChains)
 if __name__=="__main__":
     # print(sys.argv)
-    input_file="input.php"
+    input_file="test.php"
     GAMESTART(input_file)
 
