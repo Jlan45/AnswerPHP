@@ -23,6 +23,7 @@ class findTheChain:
 
                 self.finalChains.append(tmp_chain)
             if self.find_method(tmp_class,tmp_chain[-1][-1]):
+                #这里写完了对method产生的联系
                 for i in self.find_method(tmp_class,tmp_chain[-1][-1]):
                     for cls in self.classes:
                         for j in cls['methods']:
@@ -30,7 +31,6 @@ class findTheChain:
                                 tmp=copy(tmp_chain)
                                 tmp.append([cls['name'],j['name']])
                                 self.chains.append(tmp)
-
             '''
             这里需要对每个chains写三份判断
             1、确定某方法中是否有恶意方法，有的话直接连带方法名压入

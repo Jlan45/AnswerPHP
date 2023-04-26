@@ -1,6 +1,5 @@
 import json
 
-
 def get_the_classes(outf):
     # 对文件中存在的每个Class进行提取
     Classes = []
@@ -36,27 +35,29 @@ def parse_variable(target_variable):
 def find_method_call(target):
     return None
 
-
-
-
-
-
-
-
-
-
-
-
+def find_calls(target,call_list):
+    calls=[]
+    for i in call_list:
+        for j in i[0]:
+            return None
 
 
 def parse_others(target):
     others_list=[]
     a=list(find_target_attr(target,"Echo"))
     if a:
-        return None
+        for i in a:
+            func = {}
+            func['name'] = 'echo'
+            func['params'] = list(find_variable(i))
+            others_list.append(func)
     a=list(find_target_attr(target,"Include"))
     if a:
-        return None
+        for i in a:
+            func={}
+            func['name']='include'
+            func['params']=list(find_variable(i))
+            others_list.append(func)
     a=list(find_target_attr(target,"Eval"))
     if a:
         for i in a:

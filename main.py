@@ -22,6 +22,7 @@ def GAMESTART(input_file="input.php"):
         Classes.append(prepare_class(i))
     for i in Classes:
         i['evils']=find_evil(i, EVIL_FUNCTION_PHP)
+        i['calls']=find_calls(i,FUNC_TO_CALL)
     with open("output.json", "w") as f:
         json.dump(Classes, f)
     WORKING=findTheChain(Classes)
