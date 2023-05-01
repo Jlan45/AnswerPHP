@@ -44,6 +44,7 @@ def find_calls(target,call_list):
 
 def parse_others(target):
     others_list=[]
+    other_name_list=['Echo','Include','Eval','Return','IsSet']
     a=list(find_target_attr(target,"Echo"))
     if a:
         for i in a:
@@ -63,6 +64,20 @@ def parse_others(target):
         for i in a:
             func={}
             func['name']='eval'
+            func['params']=list(find_variable(i))
+            others_list.append(func)
+    a=list(find_target_attr(target,"Return"))
+    if a:
+        for i in a:
+            func={}
+            func['name']='return'
+            func['params']=list(find_variable(i))
+            others_list.append(func)
+    a=list(find_target_attr(target,"IsSet"))
+    if a:
+        for i in a:
+            func={}
+            func['name']='isset'
             func['params']=list(find_variable(i))
             others_list.append(func)
     # 处理类中其他内容
