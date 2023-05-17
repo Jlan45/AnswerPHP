@@ -50,35 +50,35 @@ def parse_others(target):
         for i in a:
             func = {}
             func['name'] = 'echo'
-            func['params'] = list(find_variable(i))
+            func['params'] = [list(find_variable(i))]
             others_list.append(func)
     a=list(find_target_attr(target,"Include"))
     if a:
         for i in a:
             func={}
             func['name']='include'
-            func['params']=list(find_variable(i))
+            func['params'] = [list(find_variable(i))]
             others_list.append(func)
     a=list(find_target_attr(target,"Eval"))
     if a:
         for i in a:
             func={}
             func['name']='eval'
-            func['params']=list(find_variable(i))
+            func['params'] = [list(find_variable(i))]
             others_list.append(func)
     a=list(find_target_attr(target,"Return"))
     if a:
         for i in a:
             func={}
             func['name']='return'
-            func['params']=list(find_variable(i))
+            func['params'] = [list(find_variable(i))]
             others_list.append(func)
     a=list(find_target_attr(target,"IsSet"))
     if a:
         for i in a:
             func={}
             func['name']='isset'
-            func['params']=list(find_variable(i))
+            func['params'] = [list(find_variable(i))]
             others_list.append(func)
     # 处理类中其他内容
     return others_list
@@ -104,6 +104,12 @@ def parse_method_nodes(nodes):
             # 写method存储的处理
             for j in tmp_node:
                 method = {}
+                if "Variable" in j['name']:
+                    method['name'] = list(find_variable(j))
+                    method['name'].reverse()
+                    method['name'].pop()
+                    dosth[1].append(method)
+                    continue
                 method['name'] = j['name']
                 method['variable'] = list(find_variable(j))
                 method['variable'].reverse()
@@ -124,7 +130,7 @@ def parse_method_nodes(nodes):
             for j in tmp_node:
                 # 写func存储的处理
                 func = {}
-                func['name'] = j['name']
+                func['name'] = j['name'] if isinstance(j['name'],str) else list(find_variable(j['name']))
                 func['params'] = []
                 # for j in tmp_node['params']:
                 #     if j[0] == "Parameter":

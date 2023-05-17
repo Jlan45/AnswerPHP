@@ -1,205 +1,21 @@
 [
+  "MethodCall",
   {
-    "name": "boy",
-    "methods": [
+    "lineno": 36,
+    "node": [
+      "Variable",
       {
-        "name": "__destruct",
-        "modifiers": "public",
-        "funcs": [
-          {
-            "name": "echo",
-            "params": []
-          }
-        ],
-        "methods": [
-          {
-            "name": "make_friends",
-            "variable": [
-              "$this",
-              "like"
-            ]
-          }
-        ],
-        "params": []
-      },
-      {
-        "name": "__toString",
-        "modifiers": "public",
-        "funcs": [
-          {
-            "name": "echo",
-            "params": []
-          }
-        ],
-        "methods": [],
-        "params": []
+        "lineno": 36,
+        "name": "$var"
       }
     ],
-    "variables": [
+    "name": [
+      "Variable",
       {
-        "name": "$like",
-        "modifiers": [
-          "public"
-        ],
-        "initial": null
+        "lineno": 36,
+        "name": "$name"
       }
     ],
-    "calls": null,
-    "evils": []
-  },
-  {
-    "name": "girl",
-    "methods": [
-      {
-        "name": "__call",
-        "modifiers": "public",
-        "funcs": [
-          {
-            "name": "echo",
-            "params": []
-          }
-        ],
-        "methods": [],
-        "params": [
-          "$func",
-          "$args"
-        ]
-      }
-    ],
-    "variables": [
-      {
-        "name": "$boyname",
-        "modifiers": [
-          "private"
-        ],
-        "initial": null
-      }
-    ],
-    "calls": null,
-    "evils": []
-  },
-  {
-    "name": "helper",
-    "methods": [
-      {
-        "name": "__construct",
-        "modifiers": "public",
-        "funcs": [],
-        "methods": [],
-        "params": [
-          "$string"
-        ]
-      },
-      {
-        "name": "__isset",
-        "modifiers": "public",
-        "funcs": [
-          {
-            "name": "echo",
-            "params": []
-          },
-          {
-            "name": "echo",
-            "params": [
-              "name",
-              "$this"
-            ]
-          }
-        ],
-        "methods": [],
-        "params": [
-          "$val"
-        ]
-      },
-      {
-        "name": "__get",
-        "modifiers": "public",
-        "funcs": [
-          {
-            "name": "echo",
-            "params": []
-          },
-          {
-            "name": [
-              "ArrayOffset",
-              {
-                "lineno": 36,
-                "node": [
-                  "Variable",
-                  {
-                    "lineno": 36,
-                    "name": "$var"
-                  }
-                ],
-                "expr": [
-                  "Variable",
-                  {
-                    "lineno": 36,
-                    "name": "$name"
-                  }
-                ]
-              }
-            ],
-            "params": []
-          }
-        ],
-        "methods": [],
-        "params": [
-          "$name"
-        ]
-      }
-    ],
-    "variables": [
-      {
-        "name": "$name",
-        "modifiers": [
-          "private"
-        ],
-        "initial": null
-      },
-      {
-        "name": "$string",
-        "modifiers": [
-          "private"
-        ],
-        "initial": null
-      }
-    ],
-    "calls": null,
-    "evils": []
-  },
-  {
-    "name": "love_story",
-    "methods": [
-      {
-        "name": "love",
-        "modifiers": "public",
-        "funcs": [
-          {
-            "name": "echo",
-            "params": []
-          },
-          {
-            "name": "array_walk",
-            "params": []
-          },
-          {
-            "name": "echo",
-            "params": []
-          },
-          {
-            "name": "echo",
-            "params": [
-              "$flag"
-            ]
-          }
-        ],
-        "methods": [],
-        "params": []
-      }
-    ],
-    "variables": [],
-    "calls": null,
-    "evils": []
+    "params": []
   }
 ]
