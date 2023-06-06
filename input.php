@@ -1,42 +1,41 @@
 <?php
-
+highlight_file(__FILE__);
 error_reporting(0);
-show_source("cl45s.php");
 
-class wllm{
+class AAA
+{
+    private $cmd;
 
-    public $admin;
-    public $passwd;
-
-    public function __construct($nnnn){
-        $this->admin ="user";
-        $this->passwd = "123456";
-        $this->xxxxxx->aaaa = $nnnn->aaaa();
-
-    }
-     public function __destruct(){
-        if($this->admin === "admin" && $this->passwd === "ctf"){
-            include("flag.php");
-            echo $flag;
-            system($_GET[0]);
-
-        }else{
-            echo $this->admin;
-            echo $this->passwd;
-            echo "Just a bit more!";
-        }
-    }
-    public function aaaaaa($x){
-        $this->aaa->aaa();
-        echo "aaaaaa".$x->x()."aaaa";
-        include "aaaa.php";
-
-        system($x);
+    public function __destruct()
+    {
+        echo "This is cmd :" . $this->cmd;
     }
 
+    public function __invoke()
+    {
+        system($this->cmd, $ret,$a[0],$a['ssss']->bbb,$a->aaa());
+    }
 }
 
-$p = $_GET['p'];
-unserialize($p);
+class BBB
+{
+    protected $name;
 
+    public function __toString()
+    {
+        return $this->name->obj;
+    }
+}
+
+class EEE
+{
+    public $var;
+
+    public function __get($var)
+    {
+        $this->var();
+    }
+}
+
+unserialize($_POST['pop']);
 ?>

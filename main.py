@@ -7,6 +7,11 @@ from config import *
 from findthechain import findTheChain
 
 def GAMESTART(input_file="input.php"):
+    '''
+    读取原php文件并开始解析
+    :param input_file:
+    :return:
+    '''
     try:
         with open(input_file,"r")as inf:
             with open("output1.json","w")as outf:
@@ -19,6 +24,7 @@ def GAMESTART(input_file="input.php"):
     with open("output1.json","r")as f:
         OringinalClasses=get_the_classes(f)
     for i in OringinalClasses:
+        #获取到每个类后对每个类进行解析处理
         Classes.append(prepare_class(i))
     for i in Classes:
         i['evils']=find_evil(i, EVIL_FUNCTION_PHP)
@@ -30,6 +36,6 @@ def GAMESTART(input_file="input.php"):
     print(WORKING.finalChains)
 if __name__=="__main__":
     # print(sys.argv)
-    input_file="test.php"
+    input_file="input.php"
     GAMESTART(input_file)
 

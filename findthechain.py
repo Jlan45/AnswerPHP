@@ -16,7 +16,7 @@ class findTheChain:
     def chains_find(self):
         while self.chains:
             tmp_chain=self.chains.pop() #这个变量不许乱动啊喂，因为这个是后面所有链子分析的基础
-            # print(tmp_chain)
+            print(tmp_chain)
             # print(self.chains)
             a=copy(self.chains)
             a.append(tmp_chain)

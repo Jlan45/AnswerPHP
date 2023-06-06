@@ -7,23 +7,50 @@ def get_the_classes(outf):
         if i[0] == "Class":
             Classes.append(i[1])
     return Classes
-
-
 def prepare_class(target_class):
-    # 解析传入的Class列表，将其中的Class解析成分析器需要的格式
+    '''
+    传入类进行处理，返回一个处理好的字典，格式如下
+      {
+    "name": "类名",
+    "methods": [
+      {
+        "name": "方法名",
+        "modifiers": "方法修饰符（没啥用但是先做了）",
+        "funcs": [
+          {
+            "name": "调用的函数名",
+            "params": [方法的参数列表]
+          }
+        ],
+        "methods": [该方法调用的其他方法],
+        "params": [该方法的参数]
+      }
+    ],
+    "variables": [
+      {
+        "name": "属性名",
+        "modifiers": ["修饰符"],
+        "initial": 初始化值，如果没有就是null
+      }
+    ],
+    "calls": 会有的方法调用（感觉没什么用也确实没做解析）,
+    "evils": [没用]
+  }
+    :param target_class:
+    :return:
+    '''
     Class = {}
     Class['name'] = target_class['name']
     Class['methods'] = []
     Class['variables'] = []
     for i in target_class['nodes']:
         if i[0] == "Method":
+            #如果是Method节点就提取出对应的方法代码块进行解析
             Class['methods'].append(parse_method(i[1]))
         elif i[0] == "ClassVariables":
             Class['variables'].append(parse_variable(i[1]))
     Class['calls']=find_method_call(Class)
     return Class
-
-
 def parse_variable(target_variable):
     # 处理类中所有属性
     variable_dict = {}
@@ -31,17 +58,13 @@ def parse_variable(target_variable):
     variable_dict['modifiers'] = (target_variable['modifiers'])
     variable_dict['initial'] = target_variable['nodes'][0][1]['initial']
     return variable_dict
-
 def find_method_call(target):
     return None
-
 def find_calls(target,call_list):
     calls=[]
     for i in call_list:
         for j in i[0]:
             return None
-
-
 def parse_others(target):
     others_list=[]
     other_name_list=['Echo','Include','Eval','Return','IsSet']
@@ -99,57 +122,58 @@ def parse_method(target_method):
 def parse_method_nodes(nodes):
     dosth = [[], []]  # 0位存funcs，1位存methods
     for i in nodes:
-        tmp_node = list(find_target_attr(i, "MethodCall"))
-        if tmp_node:
-            # 写method存储的处理
-            for j in tmp_node:
-                method = {}
-                if "Variable" in j['name']:
-                    method['name'] = list(find_variable(j))
-                    method['name'].reverse()
-                    method['name'].pop()
-                    dosth[1].append(method)
-                    continue
-                method['name'] = j['name']
-                method['variable'] = list(find_variable(j))
-                method['variable'].reverse()
-                method['variable'].pop()
-                '''
-                对于属性判断等后面在做，目前所有工作为找链子服务
-                下面的代码考虑并不完全，可以后面再改改
-                '''
-                # for j in tmp_node['params']:
-                #     if j[0]=="Parameter":
-                #         if j[1]['node'][0]=="Variable":
-                #             method['params'].append(j[1]['node'][1]['name'])
-                #         elif j[1]['node'][0]=="ArrayOffset":
-                #             method['params'].append(parse_arrayoffset(j[1]['node']))
-                dosth[1].append(method)
-        tmp_node = list(find_target_attr(i, "FunctionCall"))
-        if tmp_node:
-            for j in tmp_node:
-                # 写func存储的处理
-                func = {}
-                func['name'] = j['name'] if isinstance(j['name'],str) else list(find_variable(j['name']))
-                func['params'] = []
-                # for j in tmp_node['params']:
-                #     if j[0] == "Parameter":
-                #         if j[1]['node'][0] == "Variable":
-                #             func['params'].append(j[1]['node'][1]['name'])
-                #         elif j[1]['node'][0] == "ArrayOffset":
-                #             func['params'].append(parse_arrayoffset(j[1]['node']))
-                dosth[0].append(func)
-        tmp_node = parse_others(i)
-        if tmp_node:
-            dosth[0]+=tmp_node
+    #对每个子节点进行处理，解析出所有的方法调用和函数调用
+        if i[0] == "FunctionCall":
+            dosth[0].append(parse_functioncall(i[1]))
+        elif i[0] =="MethodCall":
+            dosth[0].append(parse_methodcall(i[1]))
     return dosth
+def parse_methodcall(target):
+    print(json.dumps(target))
 
+def parse_functioncall(target):
+    func={}
+    func['params']=parse_params(target['params'])
+    func
+    print(json.dumps(target))
+
+def parse_params(target):
+    '''
+    解析参数列表，具体实现直接看即可
+    :param target:
+    :return:
+    '''
+    params = []
+    for i in target:
+        if i[1]['node'][0]=="ObjectProperty" or i[1]['node'][0]=="ArrayOffset":
+            params.append(parse_arrayoffset(i))
+        elif i[1]['node'][0]=="Variable":
+            params.append(i[1]['node'][1]['name'])
+        elif i[1]['node'][0]=="MethodCall":
+            params.append(parse_arrayoffset(i[1]['node'][1])+['()'])
+    print(params)
+    return params
 
 def parse_arrayoffset(target):
-    arrayoffset = []
-    arrayoffset.append(target[1]['node'][1]['name'])
-    arrayoffset.append(target[1]['expr'])
-    return arrayoffset
+    '''
+    解析所有属性获取相关，可以解析数组或箭头调用
+    返回一个列表，列表中每个元素都是一层属性
+    :param target:
+    :return:
+    '''
+    result = []
+    if isinstance(target, dict):
+        for key, value in target.items():
+            if key == "name" and not isinstance(value, dict):
+                result.append(str(value))
+            elif key == "expr" and not isinstance(value, dict):
+                result.append(str(value))
+            else:
+                result += parse_arrayoffset(value)
+    elif isinstance(target, list):
+        for item in target:
+            result += parse_arrayoffset(item)
+    return result
 
 
 def find_evil(target_class, evil_functions):

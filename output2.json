@@ -1,0 +1,115 @@
+[
+  {
+    "name": "AAA",
+    "methods": [
+      {
+        "name": "__destruct",
+        "modifiers": "public",
+        "funcs": [
+          {
+            "name": "echo",
+            "params": [
+              [
+                "cmd",
+                "$this"
+              ]
+            ]
+          }
+        ],
+        "methods": [],
+        "params": []
+      },
+      {
+        "name": "__invoke",
+        "modifiers": "public",
+        "funcs": [
+          {
+            "name": "system",
+            "params": []
+          }
+        ],
+        "methods": [],
+        "params": []
+      }
+    ],
+    "variables": [
+      {
+        "name": "$cmd",
+        "modifiers": [
+          "private"
+        ],
+        "initial": null
+      }
+    ],
+    "calls": null,
+    "evils": [
+      "__invoke"
+    ]
+  },
+  {
+    "name": "BBB",
+    "methods": [
+      {
+        "name": "__toString",
+        "modifiers": "public",
+        "funcs": [
+          {
+            "name": "return",
+            "params": [
+              [
+                "obj",
+                "name",
+                "$this"
+              ]
+            ]
+          }
+        ],
+        "methods": [],
+        "params": []
+      }
+    ],
+    "variables": [
+      {
+        "name": "$name",
+        "modifiers": [
+          "protected"
+        ],
+        "initial": null
+      }
+    ],
+    "calls": null,
+    "evils": []
+  },
+  {
+    "name": "EEE",
+    "methods": [
+      {
+        "name": "__get",
+        "modifiers": "public",
+        "funcs": [],
+        "methods": [
+          {
+            "name": "var",
+            "variable": [
+              "$this"
+            ]
+          }
+        ],
+        "params": [
+          "$var"
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "name": "$var",
+        "modifiers": [
+          "public"
+        ],
+        "initial": null
+      }
+    ],
+    "calls": null,
+    "evils": []
+  }
+]

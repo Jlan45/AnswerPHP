@@ -1,0 +1,423 @@
+[
+  [
+    "FunctionCall",
+    {
+      "lineno": 2,
+      "name": "highlight_file",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 2,
+            "node": [
+              "MagicConstant",
+              {
+                "lineno": 2,
+                "name": "__FILE__",
+                "value": null
+              }
+            ],
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "FunctionCall",
+    {
+      "lineno": 3,
+      "name": "error_reporting",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 3,
+            "node": 0,
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "Class",
+    {
+      "lineno": 5,
+      "name": "AAA",
+      "type": null,
+      "extends": null,
+      "implements": [],
+      "traits": [],
+      "nodes": [
+        [
+          "ClassVariables",
+          {
+            "lineno": 7,
+            "modifiers": [
+              "private"
+            ],
+            "nodes": [
+              [
+                "ClassVariable",
+                {
+                  "lineno": 7,
+                  "name": "$cmd",
+                  "initial": null
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "Method",
+          {
+            "lineno": 9,
+            "name": "__destruct",
+            "modifiers": [
+              "public"
+            ],
+            "params": [],
+            "nodes": [
+              [
+                "Echo",
+                {
+                  "lineno": 11,
+                  "nodes": [
+                    [
+                      "BinaryOp",
+                      {
+                        "lineno": 11,
+                        "op": ".",
+                        "left": "This is cmd :",
+                        "right": [
+                          "ObjectProperty",
+                          {
+                            "lineno": 11,
+                            "node": [
+                              "Variable",
+                              {
+                                "lineno": 11,
+                                "name": "$this"
+                              }
+                            ],
+                            "name": "cmd"
+                          }
+                        ]
+                      }
+                    ]
+                  ]
+                }
+              ]
+            ],
+            "is_ref": false
+          }
+        ],
+        [
+          "Method",
+          {
+            "lineno": 14,
+            "name": "__invoke",
+            "modifiers": [
+              "public"
+            ],
+            "params": [],
+            "nodes": [
+              [
+                "FunctionCall",
+                {
+                  "lineno": 16,
+                  "name": "system",
+                  "params": [
+                    [
+                      "Parameter",
+                      {
+                        "lineno": 16,
+                        "node": [
+                          "ObjectProperty",
+                          {
+                            "lineno": 16,
+                            "node": [
+                              "Variable",
+                              {
+                                "lineno": 16,
+                                "name": "$this"
+                              }
+                            ],
+                            "name": "cmd"
+                          }
+                        ],
+                        "is_ref": false
+                      }
+                    ],
+                    [
+                      "Parameter",
+                      {
+                        "lineno": 16,
+                        "node": [
+                          "Variable",
+                          {
+                            "lineno": 16,
+                            "name": "$ret"
+                          }
+                        ],
+                        "is_ref": false
+                      }
+                    ],
+                    [
+                      "Parameter",
+                      {
+                        "lineno": 16,
+                        "node": [
+                          "ArrayOffset",
+                          {
+                            "lineno": 16,
+                            "node": [
+                              "Variable",
+                              {
+                                "lineno": 16,
+                                "name": "$a"
+                              }
+                            ],
+                            "expr": 0
+                          }
+                        ],
+                        "is_ref": false
+                      }
+                    ],
+                    [
+                      "Parameter",
+                      {
+                        "lineno": 16,
+                        "node": [
+                          "ObjectProperty",
+                          {
+                            "lineno": 16,
+                            "node": [
+                              "ArrayOffset",
+                              {
+                                "lineno": 16,
+                                "node": [
+                                  "Variable",
+                                  {
+                                    "lineno": 16,
+                                    "name": "$a"
+                                  }
+                                ],
+                                "expr": "ssss"
+                              }
+                            ],
+                            "name": "bbb"
+                          }
+                        ],
+                        "is_ref": false
+                      }
+                    ],
+                    [
+                      "Parameter",
+                      {
+                        "lineno": 16,
+                        "node": [
+                          "MethodCall",
+                          {
+                            "lineno": 16,
+                            "node": [
+                              "Variable",
+                              {
+                                "lineno": 16,
+                                "name": "$a"
+                              }
+                            ],
+                            "name": "aaa",
+                            "params": []
+                          }
+                        ],
+                        "is_ref": false
+                      }
+                    ]
+                  ]
+                }
+              ]
+            ],
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "Class",
+    {
+      "lineno": 20,
+      "name": "BBB",
+      "type": null,
+      "extends": null,
+      "implements": [],
+      "traits": [],
+      "nodes": [
+        [
+          "ClassVariables",
+          {
+            "lineno": 22,
+            "modifiers": [
+              "protected"
+            ],
+            "nodes": [
+              [
+                "ClassVariable",
+                {
+                  "lineno": 22,
+                  "name": "$name",
+                  "initial": null
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "Method",
+          {
+            "lineno": 24,
+            "name": "__toString",
+            "modifiers": [
+              "public"
+            ],
+            "params": [],
+            "nodes": [
+              [
+                "Return",
+                {
+                  "lineno": 26,
+                  "node": [
+                    "ObjectProperty",
+                    {
+                      "lineno": 26,
+                      "node": [
+                        "ObjectProperty",
+                        {
+                          "lineno": 26,
+                          "node": [
+                            "Variable",
+                            {
+                              "lineno": 26,
+                              "name": "$this"
+                            }
+                          ],
+                          "name": "name"
+                        }
+                      ],
+                      "name": "obj"
+                    }
+                  ]
+                }
+              ]
+            ],
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "Class",
+    {
+      "lineno": 30,
+      "name": "EEE",
+      "type": null,
+      "extends": null,
+      "implements": [],
+      "traits": [],
+      "nodes": [
+        [
+          "ClassVariables",
+          {
+            "lineno": 32,
+            "modifiers": [
+              "public"
+            ],
+            "nodes": [
+              [
+                "ClassVariable",
+                {
+                  "lineno": 32,
+                  "name": "$var",
+                  "initial": null
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "Method",
+          {
+            "lineno": 34,
+            "name": "__get",
+            "modifiers": [
+              "public"
+            ],
+            "params": [
+              [
+                "FormalParameter",
+                {
+                  "lineno": 34,
+                  "name": "$var",
+                  "default": null,
+                  "is_ref": false,
+                  "type": null
+                }
+              ]
+            ],
+            "nodes": [
+              [
+                "MethodCall",
+                {
+                  "lineno": 36,
+                  "node": [
+                    "Variable",
+                    {
+                      "lineno": 36,
+                      "name": "$this"
+                    }
+                  ],
+                  "name": "var",
+                  "params": []
+                }
+              ]
+            ],
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    "FunctionCall",
+    {
+      "lineno": 40,
+      "name": "unserialize",
+      "params": [
+        [
+          "Parameter",
+          {
+            "lineno": 40,
+            "node": [
+              "ArrayOffset",
+              {
+                "lineno": 40,
+                "node": [
+                  "Variable",
+                  {
+                    "lineno": 40,
+                    "name": "$_POST"
+                  }
+                ],
+                "expr": "pop"
+              }
+            ],
+            "is_ref": false
+          }
+        ]
+      ]
+    }
+  ]
+]
